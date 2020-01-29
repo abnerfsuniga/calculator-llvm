@@ -50,7 +50,7 @@ struct ast *newvar(char *name) {
 }
 
 void printtree(struct ast *a, int level, FILE *file) {
-	fprintf(file, ";%*s", 8*level, "");
+	fprintf(file, "%*s", 8*level, "");
 	level++;
 
 	if(!a) {

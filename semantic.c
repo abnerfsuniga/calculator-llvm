@@ -140,7 +140,7 @@ struct evalexp * eval_tree(struct ast *a) {
 			l = eval_tree(a->l);
 			r = eval_tree(a->r);
 			valid_types(l, r);
-			ee->type = TYPEFLOAT;
+			ee->type = l->type;
 			ee->value = l->value / r->value;
 			break;
 		case T_EXP:

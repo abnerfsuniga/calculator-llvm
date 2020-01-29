@@ -7,8 +7,6 @@
 #include "ast.h"
 #include "backend.h"
 
-FILE* fout = NULL;
-
 int main (int argc, char **argv) {
   int opt;
   char *in_filename = NULL, *tree_filename = NULL, *out_filename = NULL;
@@ -24,14 +22,11 @@ int main (int argc, char **argv) {
       case 'o':
         out_filename = optarg;
         break;
-			// case 'a':
-			// 	tree_filename = optarg;
-			// 	break;
-			// case 'd':
-			// 	DEBUG = 1;
+			case 'a':
+				tree_filename = optarg;
 				break;
 			default:
-				fprintf(stderr, "Opcao invalida ou faltando argumento: `%c'\n", opt) ;
+				fprintf(stderr, "Opcao invalida ou faltando argumento: '%c'\n", opt) ;
 				return -1 ;
 		}
   }
@@ -57,20 +52,20 @@ int main (int argc, char **argv) {
 
   gen(out_file, p);
 
-  // if (tree_filename) {
-  //   FILE *out_file = fopen(out_filename, "w");
-  //   if (!out_file){
-  //     printf("ERRO ao abrir o arquivo %s\n", out_filename);
-  //     exit(1);
-  // }
-  // }
+  if (tree_filename) {
+    FILE *tree_file = fopen(tree_filename, "w");
+    if (!tree_file){
+      printf("ERRO ao abrir o arquivo %s\n", tree_filename);
+      exit(1);
+    }
 
-  // fout = stdout;
+    p = list;
+    while (p != NULL) {
+      printtree(p->tree, 0, tree_file);
+      p = p->next;
+    }
+  }
 
-  // while(p != NULL){
-  //   // printtree(p->tree, 0, fout);
-  //   p = p->next;
-  // }
 
   return 0;
 }

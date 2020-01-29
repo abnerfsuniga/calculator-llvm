@@ -118,7 +118,7 @@ LLVMValueRef gen_expression(LLVMModuleRef mod, LLVMBuilderRef builder, struct as
     case T_DIV:
       l = gen_expression(mod, builder, a->l);
 			r = gen_expression(mod, builder, a->r);
-      if (LLVMTypeOf(l) == LLVMInt32Type()) 
+      if (LLVMTypeOf(l) == LLVMInt32Type())
         return LLVMBuildUDiv(builder, l, r, "udiv");
       else 
   			return LLVMBuildFDiv(builder, l, r, "fdiv");
