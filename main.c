@@ -44,13 +44,7 @@ int main (int argc, char **argv) {
   llnode list = frontend(in_filename);
   llnode p = list;
 
-  FILE *out_file = fopen(out_filename, "w");
-  if (!out_file){
-    printf("ERRO ao abrir o arquivo %s\n", out_filename);
-    exit(1);
-  }
-
-  gen(out_file, p);
+  gen(out_filename, p);
 
   if (tree_filename) {
     FILE *tree_file = fopen(tree_filename, "w");

@@ -1,0 +1,17 @@
+T_ASSIGNMENT
+        b
+        ^
+                3.00
+                3.00
+T_PRINT
+        b
+T_ASSIGNMENT
+        c
+        ^
+                3
+                4
+T_ASSIGNMENT
+        c
+        1
+T_PRINT
+        c

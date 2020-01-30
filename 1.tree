@@ -1,0 +1,10 @@
+T_ASSIGNMENT
+        b
+        +
+                2
+                3
+T_ASSIGNMENT
+        a
+        2
+T_PRINT
+        b

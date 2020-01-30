@@ -1,0 +1,10 @@
+T_ASSIGNMENT
+        a
+        3.20
+T_ASSIGNMENT
+        b
+        3.50
+T_PRINT
+        +
+                a
+                b

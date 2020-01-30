@@ -134,8 +134,10 @@ LLVMValueRef gen_expression(LLVMModuleRef mod, LLVMBuilderRef builder, struct as
       l = gen_expression(mod, builder, a->l);
 			r = gen_expression(mod, builder, a->r);
       if (LLVMTypeOf(l) == LLVMInt32Type()) {
-        l = LLVMBuildSIToFP(builder, l, LLVMDoubleType(), "cast");
-        r = LLVMBuildSIToFP(builder, r, LLVMDoubleType(), "cast");
+        l = LLVMBuildSIToFP(builder, l, LLVMDoubleType(), "fcast");
+        r = LLVMBuildSIToFP(builder, r, LLVMDoubleType(), "fcast");
+        LLVMValueRef result = call_pow(mod, builder, l, r);
+        return LLVMBuildFPToSI(builder, result, LLVMInt32Type(), "icast");
       }
       return call_pow(mod, builder, l, r);
 
@@ -171,7 +173,7 @@ void gen_statement (LLVMModuleRef mod, LLVMBuilderRef builder, struct ast *a) {
   }
 }
 
-void gen (FILE *out_file, llnode list) {
+void gen (char *out_filename, llnode list) {
   llnode p = list;
   LLVMModuleRef mod = LLVMModuleCreateWithName("calculator");
 	LLVMBuilderRef builder = LLVMCreateBuilder();
@@ -194,8 +196,16 @@ void gen (FILE *out_file, llnode list) {
   // return;
   LLVMBuildRetVoid(builder);
 
-	// LLVMDumpModule(mod);
-  // LLVMDisposeModule(mod);
+  FILE *ll_file = fopen("temp.ll", "w");
+  if (!ll_file){
+    printf("ERRO ao criar o arquivo .ll\n");
+    exit(1);
+  }
 
-  fputs(LLVMPrintModuleToString(mod), out_file);
+  fputs(LLVMPrintModuleToString(mod), ll_file);
+  fclose(ll_file);
+
+  char command[200]; 
+  sprintf(command, "clang-9 temp.ll -Wno-override-module -lm -o %s", out_filename);
+  system(command);
 }
