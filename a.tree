@@ -1,15 +1,18 @@
 T_ASSIGNMENT
         a
-        1.00
-T_PRINT
+        2
+T_ASSIGNMENT
+        b
+        3
+T_ASSIGNMENT
+        a
         /
+                4
+                2
+T_ASSIGNMENT
+        b
+        a
+T_PRINT
+        +
                 a
-                2.00
-T_PRINT
-        /
-                4
-                2
-T_PRINT
-        ^
-                4
-                2
+                b

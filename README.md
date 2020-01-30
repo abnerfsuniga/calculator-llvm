@@ -1,11 +1,8 @@
 # Frontend calculadora
 
-## Compilar
+## Execução
 
 ```
-make
+./calculator -i <codigo> -a <saida_arvore> -o <saida_ir_llvm>
+cat <saida_ir_llvm> 2>&1 | lli    
 ```
-## Executar
-```
-./calculator -i <caminho_codigo> -d -a <arquivo_arvore>
-```# calculator-llvm
