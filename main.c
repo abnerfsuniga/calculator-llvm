@@ -14,7 +14,7 @@ int main (int argc, char **argv) {
   while ((opt = getopt(argc, argv, "hi:a:o:")) > 0) {
     switch (opt) {
 			case 'h':
-				printf("Comandos:\n-h\tAjuda\n-i\tArquivo de entrada\n-a\tArquivo de saída AST\n-d\tDebug mode\n");
+				printf("Comandos:\n-h\tAjuda\n-i\tArquivo de entrada\n-a\tArquivo de saída AST\n-o\tArquivo excutável\n");
 				break ;
 			case 'i':
 				in_filename = optarg;
@@ -32,12 +32,12 @@ int main (int argc, char **argv) {
   }
 
   if (!in_filename) {
-    printf("Passe o arquivo de entrada: -i <arquivo>");
+    printf("Passe o arquivo de entrada: -i <arquivo>\n");
     exit(1);
   }
 
   if (!out_filename) {
-    printf("Passe o arquivo de saída: -o <arquivo>");
+    printf("Passe o arquivo de saída: -o <arquivo>\n");
     exit(1);
   }
 

@@ -1,3 +1,3 @@
 #include "ll.h"
 
-void gen(FILE *out_file, llnode list);
+void gen(char *out_file, llnode list);
